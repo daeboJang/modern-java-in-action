@@ -9,9 +9,9 @@ import java.util.Objects;
 @Getter
 @ToString
 public class BankTransaction {
-    private final LocalDate date;
-    private final double amount;
-    private final String description;
+    private final LocalDate     date;
+    private final double        amount;
+    private final String        description;
 
     public BankTransaction(LocalDate date, double amount, String description) {
         this.date = date;

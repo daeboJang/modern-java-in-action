@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +23,6 @@ public class MainApplication {
 
         // 1줄을 BankTransaction type으로
         // 파일에서 읽은 lines 를 List 구조로 만들어 파서에 넘김
-
         BankStatementCSVParser bankStatementParser = new BankStatementCSVParser();
         final List<BankTransaction> bankTransactions = bankStatementParser.parse(lines);
 
@@ -36,39 +34,11 @@ public class MainApplication {
          * - 지출이 가장 높은 상위 10건은 무엇인가?
          * - 돈을 가장 많이 지출하는 항목은 무엇?
          */
-//        bankTransactions.stream()
-
+        final BankStatementProcessor bankStatementProcessor = new BankStatementProcessor(bankTransactions);
         System.out.println("======================================");
-        System.out.println("total amount is " + calculateTotalAmount(bankTransactions));
-        System.out.println("거래내역 in January is " + calculateTotalAmount(selectInMonth(bankTransactions, Month.JANUARY)));
+        System.out.println("total amount is " + bankStatementProcessor.calculateTotalAmount());
+        System.out.println("거래내역 in January is " + bankStatementProcessor.calculateTotalInMonth(Month.JANUARY));
 
     }
 
-    public static double calculateTotalAmount(List<BankTransaction> bankTransactions) {
-        double sum  = 0d;
-        for ( BankTransaction bt: bankTransactions) {
-            sum += bt.getAmount();
-        }
-        return sum;
-    }
-
-    /**
-     * 특정달의 거래내역 리스트를 반환한다
-     * @param bankTransactions 거래내역
-     * @param month 검색월
-     * @return List<BankTransaction>
-     */
-    public static List<BankTransaction> selectInMonth(final List<BankTransaction> bankTransactions, final Month month) {
-        final List<BankTransaction> bankTransactionsInMonth = new ArrayList<>();
-        for (final BankTransaction bankTransaction: bankTransactions) {
-            /*
-             * LocalDate, Month 타입과 getMonth() 메서드
-             * java 에서 날짜, 시간을 다루는 방법
-             */
-            if (bankTransaction.getDate().getMonth() == month) {
-                bankTransactionsInMonth.add(bankTransaction);
-            }
-        }
-        return bankTransactionsInMonth;
-    }
 }
