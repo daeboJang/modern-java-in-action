@@ -28,7 +28,7 @@ public class MainApplication {
         BankStatementCSVParser bankStatementParser = new BankStatementCSVParser();
         final List<BankTransaction> bankTransactions = bankStatementParser.parse(lines);
 
-        /**
+        /*
          * 입출금 내역 분석기 첫 예제
          * ========================
          * - 총 수입과 지출은 얼마인가?
@@ -54,14 +54,14 @@ public class MainApplication {
 
     /**
      * 특정달의 거래내역 리스트를 반환한다
-     * @param bankTransactions
-     * @param month
+     * @param bankTransactions 거래내역
+     * @param month 검색월
      * @return List<BankTransaction>
      */
     public static List<BankTransaction> selectInMonth(final List<BankTransaction> bankTransactions, final Month month) {
         final List<BankTransaction> bankTransactionsInMonth = new ArrayList<>();
         for (final BankTransaction bankTransaction: bankTransactions) {
-            /**
+            /*
              * LocalDate, Month 타입과 getMonth() 메서드
              * java 에서 날짜, 시간을 다루는 방법
              */
