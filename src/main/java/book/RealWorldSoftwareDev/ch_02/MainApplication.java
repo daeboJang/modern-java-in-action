@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +38,9 @@ public class MainApplication {
          */
 //        bankTransactions.stream()
 
+        System.out.println("======================================");
         System.out.println("total amount is " + calculateTotalAmount(bankTransactions));
+        System.out.println("거래내역 in January is " + calculateTotalAmount(selectInMonth(bankTransactions, Month.JANUARY)));
 
     }
 
@@ -48,9 +52,23 @@ public class MainApplication {
         return sum;
     }
 
-    public static List<BankTransaction> selectInMonth(final List<BankTransaction> bankTransactions) {
-
-
-        return null;
+    /**
+     * 특정달의 거래내역 리스트를 반환한다
+     * @param bankTransactions
+     * @param month
+     * @return List<BankTransaction>
+     */
+    public static List<BankTransaction> selectInMonth(final List<BankTransaction> bankTransactions, final Month month) {
+        final List<BankTransaction> bankTransactionsInMonth = new ArrayList<>();
+        for (final BankTransaction bankTransaction: bankTransactions) {
+            /**
+             * LocalDate, Month 타입과 getMonth() 메서드
+             * java 에서 날짜, 시간을 다루는 방법
+             */
+            if (bankTransaction.getDate().getMonth() == month) {
+                bankTransactionsInMonth.add(bankTransaction);
+            }
+        }
+        return bankTransactionsInMonth;
     }
 }
