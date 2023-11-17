@@ -22,9 +22,9 @@ public class MainApplication {
         final List<String> lines = Files.readAllLines(path);
 
         // 1줄을 BankTransaction type으로
-        // 파일에서 읽은 lines 를 List 구조로 만들어 파서에 넘김
+        // 파일에서 읽은 List<String> 을 파라미터로 넘김
         BankStatementCSVParser bankStatementParser = new BankStatementCSVParser();
-        final List<BankTransaction> bankTransactions = bankStatementParser.parse(lines);
+        final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
 
         /*
          * 입출금 내역 분석기 첫 예제
