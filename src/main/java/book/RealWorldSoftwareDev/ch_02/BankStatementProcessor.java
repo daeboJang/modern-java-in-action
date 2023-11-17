@@ -1,7 +1,6 @@
 package book.RealWorldSoftwareDev.ch_02;
 
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BankStatementProcessor {
@@ -37,5 +36,20 @@ public class BankStatementProcessor {
             }
         }
         return total;
+    }
+
+    /**
+     * 특정 category 의 합을 반환한다
+     * @param category 카테고리
+     * @return double (default 0)
+     */
+    public double calculateTotalForCategory(final String category) {
+        double total = 0;
+        for (final BankTransaction bankTransaction: bankTransactions) {
+            if (category.equals(bankTransaction.getDescription())) {
+                total += bankTransaction.getAmount();
+            }
+        }
+        return  total;
     }
 }

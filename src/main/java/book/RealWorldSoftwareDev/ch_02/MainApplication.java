@@ -36,8 +36,17 @@ public class MainApplication {
          */
         final BankStatementProcessor bankStatementProcessor = new BankStatementProcessor(bankTransactions);
         System.out.println("======================================");
-        System.out.println("total amount is " + bankStatementProcessor.calculateTotalAmount());
-        System.out.println("거래내역 in January is " + bankStatementProcessor.calculateTotalInMonth(Month.JANUARY));
+        System.out.println("total amount is "
+                + bankStatementProcessor.calculateTotalAmount());
+
+        System.out.println("거래내역 in January is "
+                + bankStatementProcessor.calculateTotalInMonth(Month.JANUARY));
+
+        System.out.println("거래내역 in February is "
+                + bankStatementProcessor.calculateTotalInMonth(Month.FEBRUARY));
+
+        System.out.println("total amount of Salary is "
+                + bankStatementProcessor.calculateTotalForCategory("Salary"));
 
     }
 
