@@ -23,7 +23,7 @@ public class MainApplication {
 
         // 1줄을 BankTransaction type으로
         // 파일에서 읽은 List<String> 을 파라미터로 넘김
-        BankStatementCSVParser bankStatementParser = new BankStatementCSVParser();
+        BankStatementParser bankStatementParser = new BankStatementCSVParser();
         final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
 
         /*

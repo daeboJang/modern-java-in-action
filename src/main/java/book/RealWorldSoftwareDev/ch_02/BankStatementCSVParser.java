@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BankStatementCSVParser {
+public class BankStatementCSVParser implements BankStatementParser{
     // 상수처럼 쓰인다.
     private static final String CSV_SEPERATOR = ",";
     private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -13,7 +13,7 @@ public class BankStatementCSVParser {
     public BankStatementCSVParser() {
     }
 
-    private BankTransaction parseFrom(String line) {
+    public BankTransaction parseFrom(String line) {
         final String[] columns = line.split(CSV_SEPERATOR);
 
         final LocalDate date = LocalDate.parse(columns[0], DATE_PATTERN);
