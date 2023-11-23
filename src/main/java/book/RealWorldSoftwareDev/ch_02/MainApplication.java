@@ -18,10 +18,12 @@ public class MainApplication {
 
     public static void main(String[] args) throws IOException {
         final String filename = args[0];
+
+        // 파일을 읽어 1라인 -> String 로 변환한다.
         final Path path = Paths.get(RESOURCES + filename);
         final List<String> lines = Files.readAllLines(path);
 
-        // 1줄을 BankTransaction type으로
+        // 1줄을 Parsing 하여 BankTransaction type 변환으로
         // 파일에서 읽은 List<String> 을 파라미터로 넘김
         BankStatementParser bankStatementParser = new BankStatementCSVParser();
         final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
