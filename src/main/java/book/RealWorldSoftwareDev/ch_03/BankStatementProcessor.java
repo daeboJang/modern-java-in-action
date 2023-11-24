@@ -28,14 +28,7 @@ public class BankStatementProcessor {
      * @return List<BankTransaction>
      */
     public double calculateTotalInMonth(final Month month) {
-
-        /*
-         * LocalDate, Month 타입과 getMonth() 메서드
-         * java 에서 날짜, 시간을 다루는 방법
-         */
-        List<BankTransaction> bankTransactions = findTransactions(bankTransaction ->
-                bankTransaction.getDate().getMonth() == month
-        );
+        List<BankTransaction> bankTransactions = findTransactionsInMonth(month);
 
         // stream 을 사용하여 합계 계산 리팩토링
         return bankTransactions.stream()
@@ -50,51 +43,11 @@ public class BankStatementProcessor {
      */
     public double calculateTotalForCategory(final String category) {
         // findTransactions 과 functional interface 를 사용하여 변경
-        List<BankTransaction> transactions = findTransactions(bankTransaction ->
-                bankTransaction.getDescription().equals(category) );
+        List<BankTransaction> transactions = findTransactionsForCategory(category);
 
         return  transactions.stream()
                 .mapToDouble(BankTransaction::getAmount)
                 .sum();
-    }
-
-    /**
-     * 툭정 금액 이상의 은행 거래 내역 찾기
-     */
-    public List<BankTransaction> findTransactionsGreaterThanOrEqual(final int amount) {
-        final List<BankTransaction> result = new ArrayList<>();
-        for (final BankTransaction bankTransaction: bankTransactions) {
-            if (bankTransaction.getAmount() >= amount) {
-                result.add(bankTransaction);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * 특정 월의 입출금 내역 찾기
-     */
-    public List<BankTransaction> findTransactionsInMonth(final Month month) {
-        final List<BankTransaction> result = new ArrayList<>();
-        for (final BankTransaction bankTransaction: bankTransactions) {
-            if (bankTransaction.getDate().getMonth() == month) {
-                result.add(bankTransaction);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * 특정 카테고리의 입출금 찾기
-     */
-    public List<BankTransaction> findTransactionsForCategory(final String category) {
-        final List<BankTransaction> result = new ArrayList<>();
-        for (final BankTransaction bankTransaction: bankTransactions) {
-            if (bankTransaction.getDescription().equals(category)) {
-                result.add(bankTransaction);
-            }
-        }
-        return result;
     }
 
     /**
@@ -110,6 +63,34 @@ public class BankStatementProcessor {
             }
         }
         return result;
+    }
+
+    /**
+     * 툭정 금액 이상의 은행 거래 내역 찾기
+     */
+    public List<BankTransaction> findTransactionsGreaterThanOrEqual(final int amount) {
+
+        return findTransactions(bankTransaction -> bankTransaction.getAmount() >= amount);
+
+    }
+
+    /**
+     * 특정 월의 입출금 내역 찾기
+     */
+    public List<BankTransaction> findTransactionsInMonth(final Month month) {
+        /*
+         * LocalDate, Month 타입과 getMonth() 메서드
+         * java 에서 날짜, 시간을 다루는 방법
+         */
+        return findTransactions(bankTransaction -> bankTransaction.getDate().getMonth() == month);
+
+    }
+
+    /**
+     * 특정 카테고리의 입출금 찾기
+     */
+    public List<BankTransaction> findTransactionsForCategory(final String category) {
+        return findTransactions(bankTransaction -> bankTransaction.getDescription().equals(category));
     }
 
 
