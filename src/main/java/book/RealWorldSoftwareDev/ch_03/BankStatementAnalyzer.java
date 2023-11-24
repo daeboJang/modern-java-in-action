@@ -37,7 +37,7 @@ public class BankStatementAnalyzer {
      * - 돈을 가장 많이 지출하는 항목은 무엇?
      */
     private void collectSummary(final BankStatementProcessor bankStatementProcessor) {
-        System.out.println("======================================");
+        System.out.println("================= Chanpter.03 =====================");
         System.out.println("total amount is "
                 + bankStatementProcessor.calculateTotalAmount());
 
