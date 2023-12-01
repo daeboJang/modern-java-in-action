@@ -1,4 +1,4 @@
-package book.RealWorldSoftwareDev.common;
+package book.real_world_software.common;
 
 import lombok.Getter;
 import lombok.ToString;

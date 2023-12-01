@@ -1,13 +1,13 @@
-package book.RealWorldSoftwareDev.ch_02;
+package book.real_world_software.ch_03;
 
-import book.RealWorldSoftwareDev.common.BankTransaction;
+import book.real_world_software.common.BankTransaction;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BankStatementCSVParser implements BankStatementParser{
+public class BankStatementCSVParser implements BankStatementParser {
     // 상수처럼 쓰인다.
     private static final String CSV_SEPERATOR = ",";
     private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");

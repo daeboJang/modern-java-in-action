@@ -1,11 +1,14 @@
-package book.RealWorldSoftwareDev.ch_02;
+package book.real_world_software.ch_02;
 
+import book.real_world_software.common.BankTransaction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.time.Month;
+
+import static org.assertj.core.api.Assertions.*;
+
 
 class BankStatementCSVParserTest {
     private  final BankStatementParser statementParser = new BankStatementCSVParser();

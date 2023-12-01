@@ -1,6 +1,6 @@
-package book.RealWorldSoftwareDev.ch_03;
+package book.real_world_software.ch_03;
 
-import book.RealWorldSoftwareDev.common.BankTransaction;
+import book.real_world_software.common.BankTransaction;
 
 import java.io.IOException;
 import java.nio.file.Files;

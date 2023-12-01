@@ -1,6 +1,6 @@
-package book.RealWorldSoftwareDev.ch_02;
+package book.real_world_software.ch_02;
 
-import book.RealWorldSoftwareDev.common.BankTransaction;
+import book.real_world_software.common.BankTransaction;
 
 import java.util.List;
 

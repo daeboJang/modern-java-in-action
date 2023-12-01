@@ -1,4 +1,4 @@
-package book.RealWorldSoftwareDev.ch_03;
+package book.real_world_software.ch_03;
 
 import java.io.IOException;
 
