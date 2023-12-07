@@ -20,6 +20,11 @@ public class BusinessRuleEngine {
     }
 
     public void run() {
-        throw new UnsupportedOperationException();
+//        for (Action action: this.actions) {
+//            action.execute();
+//        }
+        this.actions.forEach(Action::execute);
+
+//        throw new UnsupportedOperationException();
     }
 }
