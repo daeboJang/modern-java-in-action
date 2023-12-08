@@ -13,9 +13,11 @@ import java.util.List;
 public class BusinessRuleEngine {
 
     private final List<Action> actions;
+    private final Facts facts;
 
-    public BusinessRuleEngine() {
+    public BusinessRuleEngine(final Facts facts) {
         this.actions = new ArrayList<>();
+        this.facts = facts;
     }
 
     public void addAction(final Action action) {
@@ -30,8 +32,8 @@ public class BusinessRuleEngine {
 //        for (Action action: this.actions) {
 //            action.execute();
 //        }
-        this.actions.forEach(Action::perform);
-
+//        this.actions.forEach(Action::perform);
+        this.actions.forEach(action -> action.perform(facts));
 //        throw new UnsupportedOperationException();
     }
 }

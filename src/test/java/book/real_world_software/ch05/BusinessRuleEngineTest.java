@@ -9,16 +9,19 @@ import static org.mockito.Mockito.verify;
 
 
 class BusinessRuleEngineTest {
-//    private final BusinessRuleEngine businessRuleEngine;
+    private BusinessRuleEngine businessRuleEngine;
+    private Action mockAction;
+    private Facts mockFacts;
 
     @BeforeEach
     void init() {
-//        this.businessRuleEngine = new BusinessRuleEngine();
+        this.mockAction = mock(Action.class);
+        this.mockFacts = mock(Facts.class);
+        this.businessRuleEngine = new BusinessRuleEngine(this.mockFacts);
     }
 
     @Test
     void showHaveNoRulesInitially() {
-        final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine();
 
         assertThat(businessRuleEngine.count()).isEqualTo(0);
     }
@@ -26,10 +29,14 @@ class BusinessRuleEngineTest {
 
     @Test
     void shouldAddTwoActions() {
-        final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine();
-
-        businessRuleEngine.addAction(() -> {});
-        businessRuleEngine.addAction(() -> {});
+        businessRuleEngine.addAction(facts -> {
+            final String jobTitle = facts.getFact("jobTitle");
+            if ("CEO".equals(jobTitle)) {
+                final String name = facts.getFact("name");
+                // do something!!
+            }
+        });
+        businessRuleEngine.addAction(facts -> {});
 
         assertThat(businessRuleEngine.count()).isEqualTo(2);
     }
@@ -39,13 +46,20 @@ class BusinessRuleEngineTest {
     // 2. 메서드가 호출되었는지 확인
     @Test
     void shouldExecuteAction() {
-        final BusinessRuleEngine businessRuleEngine = new BusinessRuleEngine();
-        final Action mockAction = mock(Action.class);
 
         businessRuleEngine.addAction(mockAction);
         businessRuleEngine.run();
 
-        verify(mockAction).perform();
+        verify(mockAction).perform(mockFacts);
+    }
+
+    @Test
+    public void shouldPerformformAndActionWithFacts() {
+
+        businessRuleEngine.addAction(mockAction);
+        businessRuleEngine.run();
+
+        verify(mockAction).perform(mockFacts);
     }
 
 }
