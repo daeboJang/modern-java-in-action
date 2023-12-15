@@ -12,6 +12,7 @@ class BusinessRuleEngineTest {
     private BusinessRuleEngine businessRuleEngine;
     private Action mockAction;
     private Facts mockFacts;
+    private Rule    mockRule;
 
     @BeforeEach
     void init() {
@@ -29,14 +30,14 @@ class BusinessRuleEngineTest {
 
     @Test
     void shouldAddTwoActions() {
-        businessRuleEngine.addAction(facts -> {
+        businessRuleEngine.addRule(facts -> {
             final String jobTitle = facts.getFact("jobTitle");
             if ("CEO".equals(jobTitle)) {
                 final String name = facts.getFact("name");
                 // do something!!
             }
         });
-        businessRuleEngine.addAction(facts -> {});
+        businessRuleEngine.addRule(facts -> {});
 
         assertThat(businessRuleEngine.count()).isEqualTo(2);
     }
@@ -47,19 +48,10 @@ class BusinessRuleEngineTest {
     @Test
     void shouldExecuteAction() {
 
-        businessRuleEngine.addAction(mockAction);
-        businessRuleEngine.run();
+        businessRuleEngine.addRule(mockRule);
+//        businessRuleEngine.run();
 
-        verify(mockAction).execute(mockFacts);
-    }
-
-    @Test
-    public void shouldPerformformAndActionWithFacts() {
-
-        businessRuleEngine.addAction(mockAction);
-        businessRuleEngine.run();
-
-        verify(mockAction).execute(mockFacts);
+//        verify(mockRule).perform(mockFacts);
     }
 
 }

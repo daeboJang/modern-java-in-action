@@ -12,20 +12,21 @@ import java.util.List;
  */
 public class BusinessRuleEngine {
 
-    private final List<Action> actions;
+//    private final List<Action> actions;
+    private final List<Rule> rules;
     private final Facts facts;
 
     public BusinessRuleEngine(final Facts facts) {
-        this.actions = new ArrayList<>();
         this.facts = facts;
+        this.rules = new ArrayList<>();
     }
 
-    public void addAction(final Action action) {
-        this.actions.add(action);
+    public void addRule(final Rule rule) {
+        this.rules.add(rule);
     }
 
     public int count() {
-        return this.actions.size();
+        return this.rules.size();
     }
 
     public void run() {
@@ -33,7 +34,7 @@ public class BusinessRuleEngine {
 //            action.execute();
 //        }
 //        this.actions.forEach(Action::perform);
-        this.actions.forEach(action -> action.execute(facts));
+        this.rules.forEach(rule -> rule.perform(facts));
 //        throw new UnsupportedOperationException();
     }
 }
