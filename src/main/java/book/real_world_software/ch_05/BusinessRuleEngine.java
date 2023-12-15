@@ -1,4 +1,4 @@
-package book.real_world_software.ch05;
+package book.real_world_software.ch_05;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class BusinessRuleEngine {
 //            action.execute();
 //        }
 //        this.actions.forEach(Action::perform);
-        this.actions.forEach(action -> action.perform(facts));
+        this.actions.forEach(action -> action.execute(facts));
 //        throw new UnsupportedOperationException();
     }
 }

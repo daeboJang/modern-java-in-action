@@ -1,4 +1,4 @@
-package book.real_world_software.ch05;
+package book.real_world_software.ch_05;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,7 +50,7 @@ class BusinessRuleEngineTest {
         businessRuleEngine.addAction(mockAction);
         businessRuleEngine.run();
 
-        verify(mockAction).perform(mockFacts);
+        verify(mockAction).execute(mockFacts);
     }
 
     @Test
@@ -59,7 +59,7 @@ class BusinessRuleEngineTest {
         businessRuleEngine.addAction(mockAction);
         businessRuleEngine.run();
 
-        verify(mockAction).perform(mockFacts);
+        verify(mockAction).execute(mockFacts);
     }
 
 }
