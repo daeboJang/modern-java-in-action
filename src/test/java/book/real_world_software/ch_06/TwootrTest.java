@@ -3,6 +3,7 @@ package book.real_world_software.ch_06;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -18,6 +19,7 @@ class TwootrTest {
         // 로그온 메서드는 새 엔드포인트 반환
 
         // 엔드포인트 유효성을 확인하는 assertion
+        assertThat(endPoint).isNotEqualTo(null);
 
     }
 
