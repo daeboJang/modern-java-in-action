@@ -17,4 +17,8 @@ public class Twootr {
 //        return new User(userId, password);
         return Optional.empty();
     }
+
+    public RegistrationStatus onRegisterUser(String userId, String password) {
+        return RegistrationStatus.SUCCESS;
+    }
 }

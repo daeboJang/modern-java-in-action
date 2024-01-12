@@ -33,11 +33,25 @@ class TwootrTest {
         // 엔드포인트 유효성을 확인하는 assertion
         assertThat(endPoint.isPresent()).isEqualTo(false);
 
+
     }
 
     @Test
     @DisplayName("잘못된 패스워드")
     public void shouldNotBeAuthenticateUserWithWrongPassword() {
+
+    }
+
+    @Test
+    @DisplayName("유저 신규 등록")
+    public void shouldAbleToRegisterUser() {
+        assertThat(RegistrationStatus.SUCCESS).isEqualTo( twootr.onRegisterUser(TestData.USER_ID, TestData.PASSWORD));
+        assertThat(RegistrationStatus.SUCCESS).isEqualTo( twootr.onRegisterUser(TestData.OTHER_USER_ID, TestData.PASSWORD));
+    }
+
+    @Test
+    @DisplayName("등록된 유저인 경우처리")
+    public void shouldNotRegiterDuplicateUsers() {
 
     }
 
